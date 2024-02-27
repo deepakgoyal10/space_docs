@@ -8,7 +8,7 @@ const Home = () => {
 
 
     return (
-        <div className='w-full relative h-screen bg-zinc-800'>
+        <div className='w-full h-screen relative bg-opacity-85 '>
             <Background />
             <Foreground />
 

@@ -4,10 +4,13 @@ import { useReducedMotion } from 'framer-motion'
 import { CiCirclePlus } from "react-icons/ci";
 import AddDocumentModal from './AddDocumentModal';
 import { useDocs } from '../lib/context/docs';
+import ViewDocumentModal from './ViewDocumentModal';
 
 function Foreground() {
     const foregroundRef = useRef(null)
     const [addDocModelOpen, setAddDocumentModalOpen] = useState(false)
+    const [viewDocModelOpen, setViewDocModelOpen] = useState(false)
+    const [docData, setDocData] = useState({})
     const docs = useDocs()
     // const [first, setfirst] = useState()
     const data = [
@@ -46,17 +49,21 @@ function Foreground() {
 
                 <AddDocumentModal isOpen={addDocModelOpen} setIsOpen={setAddDocumentModalOpen} />
             }
+            {viewDocModelOpen &&
 
-            <div ref={foregroundRef} className=' fixed z-[3] top-16 left-0 w-full h-full flex gap-5 flex-wrap p-6'>
+                <ViewDocumentModal isOpen={viewDocModelOpen} setIsOpen={setViewDocModelOpen} data={docData} />
+            }
+
+            <div ref={foregroundRef} className='z-[3] top-16 left-0 w-full h-full flex gap-5 flex-wrap p-6'>
                 {
                     docs.current.map((ele, index) => (
-                        <Card key={index} data={ele} foregroundRef={foregroundRef} />
+                        <Card key={index} data={ele} foregroundRef={foregroundRef} setDocOpen={setViewDocModelOpen} setDocData={setDocData} />
                     ))
                 }
 
             </div>
             <div className='fixed bottom-10 right-10 z-50' onClick={(e) => { e.stopPropagation(), setAddDocumentModalOpen(true) }}  >
-                <CiCirclePlus color='white' size={50} />
+                <CiCirclePlus color='white' size={50} className='transition ease-in-out  duration-500 hover:scale-125' />
             </div>
         </div>
     )
