@@ -30,7 +30,7 @@ function Navbar() {
                     ">
 
                         <li>
-                            <Link to="/" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer font-semibold">Documents</Link></li>
+                            <a href="/" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer font-semibold">Documents</a></li>
                     </ul>
                     {user.current ? (
                         <>
@@ -38,7 +38,7 @@ function Navbar() {
                             <a onClick={() => user.logout()} className="  text-gray-300 hover:text-white transition duration-300 font-semibold cursor-pointer">Logout</a>
                         </>
                     ) : (
-                        <Link to="/login" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer">Login</Link>
+                        <a href="/login" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer">Login</a>
                     )}
                 </div>
             </div>
