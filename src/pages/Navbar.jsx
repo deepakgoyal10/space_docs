@@ -30,7 +30,7 @@ function Navbar() {
                     ">
 
                         <li>
-                            <Link href="/" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer font-semibold">Documents</Link></li>
+                            <Link to="/" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer font-semibold">Documents</Link></li>
                     </ul>
                     {user.current ? (
                         <>
