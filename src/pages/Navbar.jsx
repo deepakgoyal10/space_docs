@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useUser } from "../lib/context/user";
 import { CiCirclePlus } from "react-icons/ci";
 function Navbar() {
@@ -29,15 +30,15 @@ function Navbar() {
                     ">
 
                         <li>
-                            <a href="/" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer font-semibold">Documents</a></li>
+                            <Link href="/" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer font-semibold">Documents</Link></li>
                     </ul>
                     {user.current ? (
                         <>
 
-                            <a onClick={() => user.logout()} className="  text-gray-300 hover:text-white transition duration-300 font-semibold">Logout</a>
+                            <a onClick={() => user.logout()} className="  text-gray-300 hover:text-white transition duration-300 font-semibold cursor-pointer">Logout</a>
                         </>
                     ) : (
-                        <a to="/login" className="text-gray-300 hover:text-white transition duration-300">Login</a>
+                        <Link to="/login" className="text-gray-300 hover:text-white transition duration-300 cursor-pointer">Login</Link>
                     )}
                 </div>
             </div>
