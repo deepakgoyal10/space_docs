@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../lib/context/user";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
+  const navigate = useNavigate();
   const user = useUser();
+
+  useEffect(() => {
+    if (user.current) {
+      navigate("/");
+    }
+  }, [user]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = () => {
-    user.login(email, password);
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await user.login(email, password);
   };
-  const handleRegister = () => {
-    user.register(email, password);
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    await user.register(email, password);
   };
   return (
     <section className="bg-zinc-900 min-h-screen flex items-center justify-center">
