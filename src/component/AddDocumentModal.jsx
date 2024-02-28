@@ -28,7 +28,7 @@ const AddDocumentModal = ({ isOpen, setIsOpen }) => {
       onClick={(e) => setIsOpen(false)}
     >
       <div
-        className="rounded-lg  relative px-8 py-5 shadow-2xl  bg-white  "
+        className="rounded-lg  relative px-8 py-5 shadow-2xl  bg-white m-3  "
         style={{
           animation: "addDoc .3s ease-out",
         }}

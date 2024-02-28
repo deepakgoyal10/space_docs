@@ -15,7 +15,7 @@ function Card({ data, foregroundRef, setDocOpen, setDocData }) {
   return (
     <motion.div
       drag
-      whileDrag={{ scale: 1.1 }}
+      whileDrag={{ scale: 1.08 }}
       dragElastic={0.2}
       dragConstraints={foregroundRef}
       dragTransition={{ bounceStiffness: 50, bounceDamping: 10 }}
