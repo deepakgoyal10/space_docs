@@ -4,7 +4,7 @@ import { MdOutlineClose } from "react-icons/md";
 const ViewDocumentModal = ({ data, isOpen, setIsOpen }) => {
   return (
     <div
-      className="absolute z-[12] w-screen h-screen bg-[#00000063] py-10 flex  items-start justify-center"
+      className="fixed inset-0 z-[12] w-screen h-screen bg-[#00000063] py-10 flex  items-start justify-center"
       onClick={(e) => setIsOpen(false)}
     >
       <div
