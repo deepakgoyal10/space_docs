@@ -27,6 +27,21 @@ body {
     opacity: 1;
   }
 }
+@keyframes editDoc {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  75% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 @keyframes dropTop {
   0% {
     transform: translateY(-100%) scale(0);

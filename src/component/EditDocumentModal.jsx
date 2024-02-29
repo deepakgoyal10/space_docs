@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import { MdOutlineClose } from "react-icons/md";
-import { useDocs } from "../lib/context/docs";
+import React, { useEffect, useMemo } from "react";
 import { useUser } from "../lib/context/user";
+import { useDocs } from "../lib/context/docs";
+import { MdOutlineClose } from "react-icons/md";
 import DocumentForm from "./DocumentForm";
-const AddDocumentModal = ({ isOpen, setIsOpen }) => {
+
+const EditDocumentModal = ({ isOpen, setIsOpen, docId }) => {
   const user = useUser();
   const docs = useDocs();
 
+  useEffect(() => {
+    if (docId) {
+      docs.get(docId);
+    }
+  }, [docId]);
+  console.log("doc.singleDoc", docs.singleDoc);
+  const docMemo = useMemo(() => docs.singleDoc, [docs.singleDoc]);
+
   const handleSubmit = async (formData) => {
-    await docs.add({ userId: user.current.$id, ...formData });
+    await docs.update(docId, formData);
     setIsOpen(false);
   };
   return (
@@ -19,7 +28,7 @@ const AddDocumentModal = ({ isOpen, setIsOpen }) => {
       <div
         className="rounded-lg  relative px-8 py-5 shadow-2xl  bg-white m-3  "
         style={{
-          animation: "addDoc .3s ease-out",
+          animation: "editDoc .3s ease-out",
         }}
         onClick={(e) => {
           e.stopPropagation();
@@ -32,13 +41,13 @@ const AddDocumentModal = ({ isOpen, setIsOpen }) => {
           <MdOutlineClose />
         </span>
         <h1 className="font-semibold text-lg text-center text-black">
-          Add Document
+          Edit Document
         </h1>
         <hr className="border my-2" />
-        <DocumentForm handleSubmit={handleSubmit} />
+        <DocumentForm handleSubmit={handleSubmit} data={docMemo} />
       </div>
     </div>
   );
 };
 
-export default AddDocumentModal;
+export default EditDocumentModal;
