@@ -13,10 +13,10 @@ const Home = () => {
   useEffect(() => {
     const userId = user?.current?.$id;
     if (userId && !user.authLoading) docs.getDocs(userId);
-    if (!user.authLoading && user.current == null) {
+    if (user.authLoading == false && user.current == null) {
       navigate("/login");
     }
-  }, [user.current]);
+  }, [user]);
   return (
     <div className="relative h-screen bg-gradient-to-b from-zinc-800 via-gray-900 to-zinc-900 bottom-0 leading-5  w-full overflow-hidden bg-opacity-85 ">
       {/* // <div className="w-full h-screen relative bg-opacity-85 "> */}

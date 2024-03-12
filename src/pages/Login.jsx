@@ -114,8 +114,14 @@ export function Login() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
+                {user.invalidCredentials && (
+                  <div className="flex items-center justify-center">
+                    <div className="text-sm">
+                      <p className="text-red-500">Invalid Credentials!!</p>
+                    </div>
+                  </div>
+                )}
               </div>
-
               <div className="flex  gap-4">
                 <button
                   className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 font-semibold w-full"

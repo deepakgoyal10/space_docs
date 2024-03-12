@@ -11,13 +11,19 @@ export function useUser() {
 export function UserProvider(props) {
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [invalidCredentials, setInvalidCredentials] = useState(false);
 
   async function login(email, password) {
-    setAuthLoading(true);
-    const loggedIn = await account.createEmailSession(email, password);
-    await init();
-    // setUser(loggedIn);
-    setAuthLoading(false);
+    try {
+      setAuthLoading(true);
+      const loggedIn = await account.createEmailSession(email, password);
+      await init();
+      setAuthLoading(false);
+    } catch (error) {
+      // console.log(error);
+      setInvalidCredentials(true);
+      setAuthLoading(false);
+    }
   }
 
   async function logout() {
@@ -36,9 +42,11 @@ export function UserProvider(props) {
 
   async function init() {
     try {
+      console.log("userinit");
       setAuthLoading(true);
       const loggedIn = await account.get();
       setUser(loggedIn);
+
       setAuthLoading(false);
     } catch (err) {
       setUser(null);
@@ -52,7 +60,15 @@ export function UserProvider(props) {
 
   return (
     <UserContext.Provider
-      value={{ current: user, login, logout, register, authLoading }}
+      value={{
+        current: user,
+        getUser: init,
+        login,
+        logout,
+        register,
+        authLoading,
+        invalidCredentials,
+      }}
     >
       {props.children}
     </UserContext.Provider>
