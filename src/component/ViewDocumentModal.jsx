@@ -52,13 +52,18 @@ const ViewDocumentModal = ({ data, isOpen, setIsOpen }) => {
           >
             <BiSolidMessageSquareEdit size={30} />
           </span>
-          <div></div>
+
           <div>
             <h1 className="text-center text-xl font-semibold my-2">
               {docMemo.title ?? data?.title}
             </h1>
           </div>
-          <hr className="border" />
+          <hr
+            style={{
+              border: `1px solid ${docMemo?.color ?? data.color}`,
+              opacity: ".4",
+            }}
+          />
           <div className="my-3 px- overflow-auto max-h-[50vh] ">
             <h1 className="text-justify ">
               {docMemo.description ?? data?.description}

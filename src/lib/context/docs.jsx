@@ -12,6 +12,7 @@ export function useDocs() {
 export function DocsProvider(props) {
   const [docs, setDocs] = useState([]);
   const [singleDoc, setSingleDoc] = useState([]);
+  const [docLoading, setDocLoading] = useState(true);
   async function add(doc) {
     try {
       const response = await databases.createDocument(
@@ -40,6 +41,7 @@ export function DocsProvider(props) {
       id
     );
     setSingleDoc(response);
+    setDocLoading(false);
   }
 
   async function update(id, data) {
@@ -53,21 +55,34 @@ export function DocsProvider(props) {
     await init();
   }
 
-  async function init() {
+  async function init(userID) {
+    const queryArr = [Query.orderDesc("$createdAt"), Query.limit(10)];
+    if (userID) queryArr.push(Query.equal("userId", userID));
     const response = await databases.listDocuments(
       DOCS_DATABASE_ID,
       DOCS_COLLECTION_ID,
-      [Query.orderDesc("$createdAt"), Query.limit(10)]
+
+      [...queryArr]
     );
     setDocs(response.documents);
+    setDocLoading(false);
   }
 
-  useEffect(() => {
-    init();
-  }, []);
+  // useEffect(() => {
+  //   init();
+  // }, []);
   return (
     <DocsContext.Provider
-      value={{ current: docs, singleDoc, add, remove, get, update }}
+      value={{
+        current: docs,
+        singleDoc,
+        getDocs: init,
+        add,
+        get,
+        update,
+        remove,
+        docLoading,
+      }}
     >
       {props.children}
     </DocsContext.Provider>
