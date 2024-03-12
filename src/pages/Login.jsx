@@ -78,10 +78,10 @@ export function Login() {
     // </section>
 
     <div className=" absolute top-0 left-0 bg-gradient-to-b from-zinc-800 via-gray-900 to-blue-950 bottom-0 leading-5 h-full w-full overflow-hidden">
-      <div className="relative min-h-screen sm:flex sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl">
+      <div className="relative min-h-screen flex flex-col-reverse  sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl gap-8">
         <div className="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10">
-          <div className="self-start hidden lg:flex flex-col text-gray-300">
-            <h1 className="my-3 font-bold text-4xl ">
+          <div className=" text-center sm:text-left sm:self-start flex flex-col text-gray-300">
+            <h1 className="my-3 font-bold text-xl sm:text-4xl ">
               Enhance Your Productivity with Space Docs.
             </h1>
             <p className="pr-3 text-sm opacity-75">
@@ -91,8 +91,8 @@ export function Login() {
             </p>
           </div>
         </div>
-        <div className="flex justify-center self-center z-10">
-          <div className="p-12 bg-white mx-auto rounded-3xl w-96">
+        <div className=" flex justify-center self-center z-10">
+          <div className="p-12 bg-white mx-auto rounded-3xl w-[90%] sm:w-96">
             <div className="mb-7">
               <h3 className="font-semibold text-2xl text-gray-800">
                 Hey Welcome !!
@@ -138,7 +138,7 @@ export function Login() {
       </div>
 
       <svg
-        className="absolute bottom-[-100px] left-0"
+        className="absolute bottom-0 sm:bottom-[-100px] left-0"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 1440 320"
       >

@@ -12,9 +12,11 @@ export function useDocs() {
 export function DocsProvider(props) {
   const [docs, setDocs] = useState([]);
   const [singleDoc, setSingleDoc] = useState([]);
-  const [docLoading, setDocLoading] = useState(true);
+  const [docLoading, setDocLoading] = useState(false);
   async function add(doc) {
     try {
+      setDocLoading(true);
+
       const response = await databases.createDocument(
         DOCS_DATABASE_ID,
         DOCS_COLLECTION_ID,
@@ -29,12 +31,16 @@ export function DocsProvider(props) {
   }
 
   async function remove(id) {
+    setDocLoading(true);
+
     await databases.deleteDocument(DOCS_DATABASE_ID, DOCS_COLLECTION_ID, id);
     setDocs((docs) => docs.filter((doc) => doc.$id !== id));
     await init(); // Refetch ideas to ensure we have 10 items
   }
 
   async function get(id) {
+    setDocLoading(true);
+
     const response = await databases.getDocument(
       DOCS_DATABASE_ID,
       DOCS_COLLECTION_ID,
@@ -45,6 +51,8 @@ export function DocsProvider(props) {
   }
 
   async function update(id, data) {
+    setDocLoading(true);
+
     const response = await databases.updateDocument(
       DOCS_DATABASE_ID,
       DOCS_COLLECTION_ID,
@@ -56,6 +64,8 @@ export function DocsProvider(props) {
   }
 
   async function init(userID) {
+    setDocLoading(true);
+
     const queryArr = [Query.orderDesc("$createdAt"), Query.limit(10)];
     if (userID) queryArr.push(Query.equal("userId", userID));
     const response = await databases.listDocuments(
