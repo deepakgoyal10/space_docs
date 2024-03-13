@@ -68,7 +68,7 @@ function Foreground() {
 
       <div
         ref={foregroundRef}
-        className="z-[3] top-16 left-0 w-full h-full flex gap-5 flex-wrap p-6"
+        className="z-[3] top-16 left-0 w-full h-screen flex gap-5 flex-wrap p-6"
       >
         {/* <div
         ref={foregroundRef}
