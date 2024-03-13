@@ -13,6 +13,7 @@ export function DocsProvider(props) {
   const [docs, setDocs] = useState([]);
   const [singleDoc, setSingleDoc] = useState([]);
   const [docLoading, setDocLoading] = useState(false);
+
   async function add(doc) {
     try {
       setDocLoading(true);
@@ -24,18 +25,24 @@ export function DocsProvider(props) {
         doc
       );
       setDocs((docs) => [response.$id, ...docs].slice(0, 10));
-      await init();
+      await init(doc.userId);
     } catch (error) {
       console.log("error in add in docs", error);
     }
   }
 
   async function remove(id) {
-    setDocLoading(true);
+    try {
+      setDocLoading(true);
 
-    await databases.deleteDocument(DOCS_DATABASE_ID, DOCS_COLLECTION_ID, id);
-    setDocs((docs) => docs.filter((doc) => doc.$id !== id));
-    await init(); // Refetch ideas to ensure we have 10 items
+      await databases.deleteDocument(DOCS_DATABASE_ID, DOCS_COLLECTION_ID, id);
+      setDocs((docs) => docs.filter((doc) => doc.$id !== id));
+      setDocLoading(false);
+    } catch (error) {
+      console.log(error);
+      setDocLoading(false);
+    }
+    // await init(); // Refetch ideas to ensure we have 10 items
   }
 
   async function get(id) {
@@ -51,31 +58,43 @@ export function DocsProvider(props) {
   }
 
   async function update(id, data) {
-    setDocLoading(true);
+    try {
+      setDocLoading(true);
 
-    const response = await databases.updateDocument(
-      DOCS_DATABASE_ID,
-      DOCS_COLLECTION_ID,
-      id,
-      data
-    );
-    setSingleDoc(response);
-    await init();
+      const response = await databases.updateDocument(
+        DOCS_DATABASE_ID,
+        DOCS_COLLECTION_ID,
+        id,
+        data
+      );
+      console.log(response);
+      setSingleDoc(response);
+      await init(response.userId);
+      setDocLoading(false);
+    } catch (error) {
+      console.log(error);
+      setDocLoading(false);
+    }
   }
 
   async function init(userID) {
-    setDocLoading(true);
+    try {
+      setDocLoading(true);
 
-    const queryArr = [Query.orderDesc("$createdAt"), Query.limit(10)];
-    if (userID) queryArr.push(Query.equal("userId", userID));
-    const response = await databases.listDocuments(
-      DOCS_DATABASE_ID,
-      DOCS_COLLECTION_ID,
+      const queryArr = [Query.orderDesc("$createdAt"), Query.limit(10)];
+      if (userID) queryArr.push(Query.equal("userId", userID));
+      const response = await databases.listDocuments(
+        DOCS_DATABASE_ID,
+        DOCS_COLLECTION_ID,
 
-      [...queryArr]
-    );
-    setDocs(response.documents);
-    setDocLoading(false);
+        [...queryArr]
+      );
+      setDocs(response.documents);
+      setDocLoading(false);
+    } catch (error) {
+      console.log(error);
+      setDocLoading(false);
+    }
   }
 
   // useEffect(() => {

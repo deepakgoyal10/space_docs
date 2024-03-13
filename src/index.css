@@ -5,12 +5,22 @@
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-/* body {
-  background-color: rgb(0, 0, 0, 0.85);
-} */
-::selection {
-  color: rgb(139, 139, 72);
+body {
+  /* background-color: rgb(0, 0, 0, 0.85); */
+  /* background-image: linear-gradient(#27272a, #111827, #18181b); */
+  background: linear-gradient(
+      180deg,
+      rgba(39, 39, 42, 1) 0%,
+      rgba(17, 24, 39, 1) 58%,
+      rgba(24, 24, 27, 1) 100%
+    )
+    no-repeat center/cover fixed;
+  height: 100vh;
+  margin: 0;
 }
+/* ::selection {
+  color: rgb(139, 139, 72);
+} */
 
 @keyframes addDoc {
   0% {

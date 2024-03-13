@@ -72,7 +72,7 @@ function Foreground() {
       >
         {/* <div
         ref={foregroundRef}
-        className="absolute top-0 left-0 bg-gradient-to-b from-zinc-800 via-gray-900 to-zinc-900 bottom-0 leading-5 h-full w-full overflow-hidden  z-[3] flex gap-5 flex-wrap p-6"
+        className="absolute top-0 left-0 bg-gradient-to-b from-zinc-800 via-gray-900 to-zinc-900 bottom-0 leading-5   z-[3] flex gap-5 flex-wrap p-6 h-full w-full"
       > */}
         {docs.current.map((ele, index) => (
           <Card

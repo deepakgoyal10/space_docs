@@ -18,8 +18,8 @@ const Home = () => {
     }
   }, [user]);
   return (
-    <div className="relative h-screen bg-gradient-to-b from-zinc-800 via-gray-900 to-zinc-900 bottom-0 leading-5  w-full overflow-hidden bg-opacity-85 ">
-      {/* // <div className="w-full h-screen relative bg-opacity-85 "> */}
+    // <div className="relative h-screen bg-gradient-to-b from-zinc-800 via-gray-900 to-zinc-900 bottom-0 leading-5  w-full  bg-opacity-85 overflow-auto">
+    <div className="w-full  relative  ">
       <Background />
       <Foreground />
     </div>
