@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useUser } from "../lib/context/user";
 import { useNavigate } from "react-router-dom";
 import { useDocs } from "../lib/context/docs";
+import { motion } from "framer-motion";
 
 export function Login() {
   const navigate = useNavigate();
@@ -31,74 +32,43 @@ export function Login() {
   };
   const [showPassword, setShowPassword] = useState(false);
   return (
-    // <section className="bg-zinc-900 min-h-screen flex items-center justify-center">
-    //   <div className="">
-    //     <img className="h-screen " src="/login_image.jpg" alt="" />
-    //   </div>
-    //   <div className="max-w-md w-full bg-white p-8 rounded shadow-md">
-    //     <h1 className="text-3xl font-semibold mb-6">Login or Register</h1>
-    //     <form>
-    //       <input
-    //         className="w-full mb-4 px-4 py-3  focus:border-b  focus:outline-none focus:border-blue-600"
-    //         type="email"
-    //         placeholder="Email"
-    //         value={email}
-    //         onChange={(event) => setEmail(event.target.value)}
-    //       />
-    //       <input
-    //         className="w-full mb-6 px-4 py-3 focus:border-b  focus:outline-none focus:border-blue-600"
-    //         type="password"
-    //         placeholder="Password"
-    //         value={password}
-    //         onChange={(event) => setPassword(event.target.value)}
-    //       />
-    //       <div className="flex justify-between items-center gap-2">
-    //         {/* <button
-    //           className="w-1/2 bg-indigo-500 text-white py-3 rounded hover:bg-indigo-600 transition duration-300 ease-in-out"
-    //           type="button"
-    //           onClick={handleLogin}
-    //         >
-    //           Login
-    //         </button> */}
-    //         <button
-    //           className=" w-1/2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 font-semibold "
-    //           onClick={handleLogin}
-    //         >
-    //           Login
-    //         </button>
-    //         <button
-    //           className=" w-1/2 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 font-semibold "
-    //           onClick={handleRegister}
-    //         >
-    //           Register
-    //         </button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </section>
-
     <div className=" absolute top-0 left-0 bg-gradient-to-b from-zinc-800 via-gray-900 to-blue-950 bottom-0 leading-5 h-full w-full overflow-hidden">
       <div className="relative min-h-screen flex flex-col-reverse  sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl gap-8">
         <div className="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10">
           <div className=" text-center sm:text-left sm:self-start flex flex-col text-gray-300">
-            <h1 className="my-3 font-bold text-xl sm:text-4xl ">
+            <motion.h1
+              initial={{ y: -450, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6, type: "spring" }}
+              className="my-3 font-bold text-xl sm:text-4xl "
+            >
               Enhance Your Productivity with Space Docs.
-            </h1>
-            <p className="pr-3 text-sm opacity-75">
+            </motion.h1>
+            <motion.p
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.75 }}
+              className="pr-3 text-sm opacity-75"
+            >
               Welcome to Space Docs, your ultimate productivity companion. Say
               goodbye to scattered notes and hello to seamless organization.
               With Space Docs
-            </p>
+            </motion.p>
           </div>
         </div>
         <div className=" flex justify-center self-center z-10">
-          <div className="p-12 bg-white mx-auto rounded-3xl w-[90%] sm:w-96">
+          <motion.div
+            initial={{ y: -200, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ ease: "circOut", duration: 0.75, delay: 0.2 }}
+            className="p-12 bg-white mx-auto rounded-3xl w-[90%] sm:w-96"
+          >
             <div className="mb-7">
               <h3 className="font-semibold text-2xl text-gray-800">
                 Hey Welcome !!
               </h3>
             </div>
-            <form className="space-y-6" onSubmit={(e) => preventDefault()}>
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <input
                   className="w-full mb-4 px-4 py-3  border-b border-gray-400 focus:outline-none focus:border-blue-600"
@@ -139,7 +109,7 @@ export function Login() {
                 </button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
 

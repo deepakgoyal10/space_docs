@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Background from "./component/Background";
 import Foreground from "./component/Foreground";
 import { UserProvider, useUser } from "./lib/context/user";
@@ -10,16 +10,30 @@ import IdeaPage from "./pages/ideasPage";
 import Doc from "./pages/Doc";
 import Loader from "./component/Loader";
 import { useDocs } from "./lib/context/docs";
+import { motion } from "framer-motion";
+import useFollowPointer from "./component/useFollowPointer";
+import { useLocation } from "react-router-dom";
+
 function App() {
   const isLoginPage = window.location.pathname === "/login";
   const user = useUser();
   const docs = useDocs();
+  const ref = useRef(null);
 
+  const { x, y } = useFollowPointer(ref);
   return (
     <BrowserRouter>
       <div>
         <Navbar />
         {(user.authLoading || docs.docLoading) && <Loader />}
+        <motion.div
+          ref={ref}
+          className="box"
+          animate={{ x, y }}
+          transition={{
+            restDelta: 0.001,
+          }}
+        />
         <Routes>
           <Route>
             <Route index element={<Home />} />
