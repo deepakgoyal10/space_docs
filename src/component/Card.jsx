@@ -23,10 +23,11 @@ function Card({ data, foregroundRef, setDocOpen, setDocData }) {
     >
       <FiFileText />
       <h1 className="mt-4 font-semibold">{data.title}</h1>
-      <p className="text-xs mt-2 font-semibold leading-tight ">
-        {data.description?.length > 180
+      <p className="text-xs mt-2 font-semibold leading-tight line-clamp-6 ">
+        {data.description}
+        {/* {data.description?.length > 180
           ? data.description?.slice(0, 180) + "..."
-          : data.description}
+          : data.description} */}
       </p>
       <div className="absolute bottom-0 left-0  w-full   ">
         {/* <div className='flex items-center justify-between mb-3 py-3 px-8'> */}

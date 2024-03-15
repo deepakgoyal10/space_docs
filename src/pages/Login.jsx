@@ -3,6 +3,7 @@ import { useUser } from "../lib/context/user";
 import { useNavigate } from "react-router-dom";
 import { useDocs } from "../lib/context/docs";
 import { motion } from "framer-motion";
+import AnimatePageTransition from "../component/AnimatePageTransition";
 
 export function Login() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export function Login() {
   };
   const [showPassword, setShowPassword] = useState(false);
   return (
+    // <AnimatePageTransition>
     <div className=" absolute top-0 left-0 bg-gradient-to-b from-zinc-800 via-gray-900 to-blue-950 bottom-0 leading-5 h-full w-full overflow-hidden">
       <div className="relative min-h-screen flex flex-col-reverse  sm:flex-row  justify-center bg-transparent rounded-3xl shadow-xl gap-8">
         <div className="flex-col flex self-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10">
@@ -125,5 +127,6 @@ export function Login() {
         ></path>
       </svg>
     </div>
+    // </AnimatePageTransition>
   );
 }
